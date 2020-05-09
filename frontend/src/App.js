@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import LoginRegistrationForm from "./LoginRegistrationForm"
-
+import PostContainer from "./PostContainer"
 export default class App extends Component {
   constructor(){
     super()
@@ -28,7 +28,7 @@ export default class App extends Component {
       })
       console.log("registerResponse", registerResponse)
       const registerJson = await registerResponse.json()
-      console.log("regiserJson", registerJson)
+      console.log("registerJson", registerJson)
 
       if(registerResponse.status === 201){
         this.setState({
@@ -43,15 +43,66 @@ export default class App extends Component {
     }
   }
 
+  login = async (loginInfo)=>{
+    const url = process.env.REACT_APP_API_URL + "/api/v1/users/login"
+    try{
+      const loginResponse = await fetch(url, {
+        credentials: 'include',
+        'method': "POST",
+        'body': JSON.stringify(loginInfo),
+        'headers':{
+          'Content-Type':'application/json'
+        }
+      })
+      const loginJson = await loginResponse.json()
+      if(loginResponse.status === 200){
+        this.setState({
+          loggedIn: true,
+          loggedInUserEmail: loginJson.data.email,
+          loggedInUserId: loginJson.data.id
+        })      
+      }
 
+    }catch(err){
+      console.log(err)
+    }
+  }
+  logout = async ()=>{
+    try{
+      const url= process.env.REACT_APP_API_URL + "/api/v1/users/logout"
+      const logoutResponse = await fetch(url, {
+        credentials: "include"
+      })
+      const logoutJson = await logoutResponse.json()
+      if(logoutResponse.status === 200){
+        this.setState({
+          loggedIn: false,
+          loggedInUserId:"",
+          loggedInUserEmail:""
+        })
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
 
 
   render() {
   return (
     <div className="App">
+    {
+      this.state.loggedIn
+      ?
+      <React.Fragment>
+      <PostContainer />
+      </React.Fragment>
+      :
     <LoginRegistrationForm
       register={this.register}
+      login={this.login}
        />
+    }
+      
       
     </div>
   )
