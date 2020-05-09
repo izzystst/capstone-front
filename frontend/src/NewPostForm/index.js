@@ -12,9 +12,12 @@ export default class NewPostForm extends Component {
 			image:""
 		}
 	}
+	componentDidMount(){
+		this.geoFindMe()
+	}
 	handleChange = (event) =>{
 		// console.log(event)
-		
+
 		  
 		//    console.log(document.getElementById('startLat').innerHTML = startPos.coords.latitude
 		//     document.getElementById('startLon').innerHTML = startPos.coords.longitude;
@@ -26,6 +29,34 @@ export default class NewPostForm extends Component {
 			text: event.target.value
 		})
 	}
+	geoFindMe= async ()=> {
+
+		console.log("calling geo find me")
+
+  		 	const success = async (position)=> {
+  			console.log("it was a success")
+    		const latitude  = position.coords.latitude;
+    		const longitude = position.coords.longitude;
+    		
+    		this.setState({
+    			Latitude: latitude,
+    			Longitude: longitude
+    		})
+  }
+
+			const error= async () =>{
+				console.log("error")
+			}
+
+			if(!navigator.geolocation) {
+				console.log("err")
+			} else {
+			navigator.geolocation.getCurrentPosition(success, error);
+			}
+}
+
+
+
 	handleSubmit = (event)=>{
 		event.preventDefault()
 		this.props.createPost(this.state)

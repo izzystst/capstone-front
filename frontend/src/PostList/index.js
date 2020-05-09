@@ -6,7 +6,7 @@ export default function PostList(props) {
 	const posts = props.posts.map(post=>{
 		return(
 			<div key={post.id}>
-			<h2>{post.date.date()}</h2>
+			<h2>{post.date}</h2>
 			<p>{post.text}</p>
 			</div>
 			)

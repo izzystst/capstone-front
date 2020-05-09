@@ -55,7 +55,18 @@ export default class PostContainer extends Component {
 		}
 
 	}
-
+	getUsersPosts = async (id)=>{
+		try{
+			const url = process.env.REACT_APP_API_URL + "/api/v1/users/" + id + "/" 
+			const usersPostsResponse = await fetch(url, {
+				credentials: "include"
+			})
+			const userPostsJson = await usersPostsResponse.json()
+			console.log(userPostsJson)
+		}catch(err){
+			console.log(err)
+		}
+	}
 	render(){
 		return(
 			<React.Fragment>
