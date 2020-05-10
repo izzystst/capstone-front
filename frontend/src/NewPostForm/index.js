@@ -16,15 +16,7 @@ export default class NewPostForm extends Component {
 		this.geoFindMe()
 	}
 	handleChange = (event) =>{
-		// console.log(event)
 
-		  
-		//    console.log(document.getElementById('startLat').innerHTML = startPos.coords.latitude
-		//     document.getElementById('startLon').innerHTML = startPos.coords.longitude;
-		//   };
-		//   navigator.geolocation.getCurrentPosition(geoSuccess);
-		// };
-		// console.log(geoSuccess)
 		this.setState({
 			text: event.target.value
 		})
@@ -42,7 +34,7 @@ export default class NewPostForm extends Component {
     			Latitude: latitude,
     			Longitude: longitude
     		})
-  }
+  			}
 
 			const error= async () =>{
 				console.log("error")
@@ -53,9 +45,11 @@ export default class NewPostForm extends Component {
 			} else {
 			navigator.geolocation.getCurrentPosition(success, error);
 			}
-}
+	}
 
-
+	fileChange = (event) =>{
+		console.log(event)
+	}
 
 	handleSubmit = (event)=>{
 		event.preventDefault()
@@ -73,6 +67,7 @@ export default class NewPostForm extends Component {
 					placeholder="How was today?"
 					onChange={this.handleChange}
 				/>
+				<Form.Input type="file" onChange={this.fileChange}/>
 			<Button type="Submit">Post</Button>
 			</Form>
 			</Segment>
