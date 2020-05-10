@@ -9,7 +9,7 @@ export default class App extends Component {
     this.state = {
       loggedIn: false,
       loggedInUserEmail: "",
-      loggedInUserId: ""
+      loggedInUserId: 0
     }
   }
 
@@ -94,7 +94,7 @@ export default class App extends Component {
       this.state.loggedIn
       ?
       <React.Fragment>
-      <PostContainer />
+      <PostContainer loggedInUserId={this.state.loggedInUserId}/>
       </React.Fragment>
       :
     <LoginRegistrationForm

@@ -67,7 +67,7 @@ export default class NewPostForm extends Component {
 					placeholder="How was today?"
 					onChange={this.handleChange}
 				/>
-				<Form.Input type="file" onChange={this.fileChange}/>
+				 {/*<Form.Input type="file" onChange={this.fileChange}/>*/}
 			<Button type="Submit">Post</Button>
 			</Form>
 			</Segment>
