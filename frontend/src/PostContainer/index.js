@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import { Form, Button, Label, Segment }
 import NewPostForm from "../NewPostForm"
 import PostList from "../PostList"
-import MapRender from "../Map"
+import MapRender from "../MapRender"
 import UsersPosts from "../UsersPosts"
 export default class PostContainer extends Component {
 	constructor(props){
