@@ -47,8 +47,21 @@ export default class NewPostForm extends Component {
 			}
 	}
 
-	fileChange = (event) =>{
-		console.log(event)
+	fileChange = async (event) =>{
+		const files = event.target.files
+		const data = new FormData()
+		const url = "https://api.cloudinary.com/v1_1/doxfaebhn/image/upload"
+		data.append('file', files[0])
+		data.append('upload_preset', 'qxwmxysi')
+
+		const upoladImageResponse = await fetch(url, {
+			method: 'POST',
+			body: data
+		})
+		const file = await upoladImageResponse.json()
+		this.setState({
+			image: file.secure_url
+		})
 	}
 
 	handleSubmit = (event)=>{
@@ -67,7 +80,10 @@ export default class NewPostForm extends Component {
 					placeholder="How was today?"
 					onChange={this.handleChange}
 				/>
-				 {/*<Form.Input type="file" onChange={this.fileChange}/>*/}
+				 <Form.Input 
+				 	type="file" 
+				 	name="image"
+				 	onChange={this.fileChange}/>
 			<Button type="Submit">Post</Button>
 			</Form>
 			</Segment>

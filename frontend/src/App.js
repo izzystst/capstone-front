@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import LoginRegistrationForm from "./LoginRegistrationForm"
 import PostContainer from "./PostContainer"
+import Header from "./Header"
 export default class App extends Component {
   constructor(){
     super()
@@ -94,6 +95,7 @@ export default class App extends Component {
       this.state.loggedIn
       ?
       <React.Fragment>
+      <Header email={this.state.loggedInUserEmail}/>
       <PostContainer loggedInUserId={this.state.loggedInUserId}/>
       </React.Fragment>
       :
