@@ -53,7 +53,8 @@ export default class NewPostForm extends Component {
 		const url = "https://api.cloudinary.com/v1_1/doxfaebhn/image/upload"
 		data.append('file', files[0])
 		data.append('upload_preset', 'qxwmxysi')
-
+		console.log("this is the data")
+		console.log(data)
 		const upoladImageResponse = await fetch(url, {
 			method: 'POST',
 			body: data
@@ -67,6 +68,11 @@ export default class NewPostForm extends Component {
 	handleSubmit = (event)=>{
 		event.preventDefault()
 		this.props.createPost(this.state)
+		this.setState({
+
+			text: "",
+			image:""
+		})
 	}
 	render(){
 		return(
@@ -74,11 +80,12 @@ export default class NewPostForm extends Component {
 			<h4>Today's Post</h4>
 			<Form onSubmit={this.handleSubmit}>
 				<Form.Input
-					type="text-area"
+					type="textarea"
 					name="text"
 					value={this.state.text}
 					placeholder="How was today?"
 					onChange={this.handleChange}
+					required
 				/>
 				 <Form.Input 
 				 	type="file" 
