@@ -12,6 +12,7 @@ export default function PostList(props) {
 			<div key={post.id}>
 			<h2>{post.date}</h2>
 			<p>{post.text}</p>
+			<img src={post.image} />
 			</div>
 			)
 	})

@@ -10,7 +10,8 @@ export default class App extends Component {
     this.state = {
       loggedIn: false,
       loggedInUserEmail: "",
-      loggedInUserId: 0
+      loggedInUserId: 0,
+      renderMap:false
     }
   }
 
@@ -86,8 +87,11 @@ export default class App extends Component {
       console.log(err)
     }
   }
-
-
+  ShowMap=()=>{
+    this.setState({
+      renderMap: true
+    })
+  }
   render() {
   return (
     <div className="App">
@@ -95,8 +99,12 @@ export default class App extends Component {
       this.state.loggedIn
       ?
       <React.Fragment>
-      <Header email={this.state.loggedInUserEmail}/>
-      <PostContainer loggedInUserId={this.state.loggedInUserId}/>
+      <Header 
+        email={this.state.loggedInUserEmail}
+        ShowMap={this.ShowMap}
+      />
+      <PostContainer 
+        loggedInUserId={this.state.loggedInUserId}/>
       </React.Fragment>
       :
     <LoginRegistrationForm

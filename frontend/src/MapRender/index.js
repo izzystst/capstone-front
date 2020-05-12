@@ -3,7 +3,6 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 function GoogleMap(props) {
 console.log("these are the props")
 console.log(props)
-
   const markers = props.posts.map((post)=>{
     return (
       <Marker key={post.id}
