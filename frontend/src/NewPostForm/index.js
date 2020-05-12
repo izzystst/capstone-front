@@ -85,6 +85,7 @@ export default class NewPostForm extends Component {
 					value={this.state.text}
 					placeholder="How was today?"
 					onChange={this.handleChange}
+					// height="200p"
 					required
 				/>
 				 <Form.Input 
