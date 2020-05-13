@@ -7,7 +7,7 @@ export default function PostList(props) {
 	// console.log(today)
 	// const TodayDate = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear()
 	// console.log(TodayDate)
-	const posts = props.posts.map(post=>{
+	const posts = props.posts.reverse().map(post=>{
 		return(
 			<div key={post.id}>
 
