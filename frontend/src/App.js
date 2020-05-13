@@ -141,6 +141,7 @@ export default class App extends Component {
         newPost={this.newPost}
         UsersPost={this.UsersPost}
         allPosts={this.allPosts}
+        logout={this.logout}
       />
       <PostContainer 
         loggedInUserId={this.state.loggedInUserId}
