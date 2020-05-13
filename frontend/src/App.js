@@ -11,10 +11,11 @@ export default class App extends Component {
       loggedIn: false,
       loggedInUserEmail: "",
       loggedInUserId: 0,
-      renderMap:false,
+      renderMap: false,
       renderNewPost: false,
       renderUsersPosts: false,
-      renderAllPosts: false
+      renderAllPosts: false,
+      renderCommonWords: false
 
     }
   }
@@ -99,7 +100,9 @@ export default class App extends Component {
       renderMap:true,
       renderNewPost: false,
       renderUsersPosts: false,
-      renderAllPosts: false
+      renderAllPosts: false,
+      renderCommonWords: false
+
 
     })
   }
@@ -109,7 +112,9 @@ export default class App extends Component {
       renderMap:false,
       renderNewPost: true,
       renderUsersPosts: false,
-      renderAllPosts: false
+      renderAllPosts: false,
+      renderCommonWords: false
+
     })
   }
   UsersPost=()=>{
@@ -117,7 +122,9 @@ export default class App extends Component {
       renderMap:false,
       renderNewPost: false,
       renderUsersPosts: true,
-      renderAllPosts: false
+      renderAllPosts: false,
+      renderCommonWords: false
+
     })
   }
   allPosts=()=>{
@@ -125,8 +132,20 @@ export default class App extends Component {
       renderMap:false,
       renderNewPost: false,
       renderUsersPosts: false,
-      renderAllPosts: true      
+      renderAllPosts: true,
+      renderCommonWords: false
+
     })
+  }
+  commonWords=()=>{
+    this.setState({
+      renderMap:false,
+      renderNewPost: false,
+      renderUsersPosts: false,
+      renderAllPosts: false,
+      renderCommonWords: true
+    })
+
   }
 
 
@@ -144,6 +163,7 @@ export default class App extends Component {
         UsersPost={this.UsersPost}
         allPosts={this.allPosts}
         logout={this.logout}
+        commonWords={this.commonWords}
       />
       <PostContainer 
         loggedInUserId={this.state.loggedInUserId}
@@ -151,6 +171,8 @@ export default class App extends Component {
         renderNewPost={this.state.renderNewPost}
         renderUsersPosts={this.state.renderUsersPosts}
         renderAllPosts={this.state.renderAllPosts}
+        renderCommonWords={this.state.renderCommonWords}
+
         />
       </React.Fragment>
       :

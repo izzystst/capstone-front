@@ -4,6 +4,7 @@ import NewPostForm from "../NewPostForm"
 import PostList from "../PostList"
 import MapRender from "../MapRender"
 import UsersPosts from "../UsersPosts"
+import CommonWordsList from "../CommonWordsList"
 export default class PostContainer extends Component {
 	constructor(props){
 		super(props)
@@ -15,7 +16,7 @@ export default class PostContainer extends Component {
 
 
 	  async componentDidMount() {
-			this.getPosts()
+			await this.getPosts()
 			// this.getUsersPosts(1)
 	}
 
@@ -110,6 +111,13 @@ export default class PostContainer extends Component {
 				<div>
 				<MapRender posts={this.state.posts}/>
 				</div>
+			}
+			{this.props.renderCommonWords === true
+				&&
+				<div>
+				<CommonWordsList />
+				</div>
+
 			}
 			</React.Fragment>
 			)
