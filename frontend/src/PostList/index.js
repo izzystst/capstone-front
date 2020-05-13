@@ -1,5 +1,5 @@
 import React from 'react'
-
+const moment = require('moment');
 export default function PostList(props) {
 	// console.log("props in post list")
 	// console.log(props)
@@ -10,7 +10,8 @@ export default function PostList(props) {
 	const posts = props.posts.map(post=>{
 		return(
 			<div key={post.id}>
-			<h2>{post.date}</h2>
+
+			<h2>{moment(post.date).calendar()}</h2>
 			<p>{post.text}</p>
 			<img src={post.image} />
 			</div>
