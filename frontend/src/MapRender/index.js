@@ -4,6 +4,7 @@ function GoogleMap(props) {
 console.log("these are the props")
 console.log(props)
   const markers = props.posts.map((post)=>{
+      console.log("marker called")
     return (
       <Marker key={post.id}
         name={post.date}

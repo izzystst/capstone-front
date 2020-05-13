@@ -94,6 +94,7 @@ export default class App extends Component {
     }
   }
   ShowMap=()=>{
+    console.log("show map is being called")
     this.setState({
       renderMap:true,
       renderNewPost: false,
@@ -103,6 +104,7 @@ export default class App extends Component {
     })
   }
   newPost=()=>{
+    console.log("add post is being called")
     this.setState({
       renderMap:false,
       renderNewPost: true,

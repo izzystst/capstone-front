@@ -9,7 +9,7 @@ export default function Header(props) {
   }
   return(
     <nav style={headerStyle}>
-    <span className='fake-link' onClick={props.showMap}> Where? </span>
+    <span className='fake-link' onClick={props.ShowMap}> Where? </span>
     <span className='fake-link' onClick={props.newPost}> Add Today </span>
     <span className='fake-link' onClick={props.UsersPost}> Your Past </span>
     <span className='fake-link' onClick={props.allPosts}> Everyone's Past</span>
