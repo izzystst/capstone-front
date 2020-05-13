@@ -85,6 +85,8 @@ export default class NewPostForm extends Component {
 					value={this.state.text}
 					placeholder="How was today?"
 					onChange={this.handleChange}
+					// max length is in characrtors (look into avergaes)
+					maxLength="200"
 					// height="200p"
 					required
 				/>
@@ -92,6 +94,7 @@ export default class NewPostForm extends Component {
 				 	type="file" 
 				 	name="image"
 				 	onChange={this.fileChange}/>
+
 			<Button type="Submit">Post</Button>
 			</Form>
 			</Segment>
