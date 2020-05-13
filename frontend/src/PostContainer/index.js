@@ -86,10 +86,31 @@ export default class PostContainer extends Component {
 	render(){
 		return(
 			<React.Fragment>
-			<NewPostForm createPost={this.createPost} />
-			<PostList posts={this.state.posts}/>
-			<MapRender posts={this.state.posts}/>
-			<UsersPosts posts={this.state.currentUsersPosts}/>
+			{this.props.renderNewPost === true
+				&&
+				<div>
+				<NewPostForm createPost={this.createPost} />
+				</div>
+			}
+			{this.props.renderUsersPosts === true
+				&&
+				<div>
+				<UsersPosts posts={this.state.currentUsersPosts}/>
+				</div>
+
+			}
+			{this.props.renderAllPosts === true
+				&&
+				<div>
+				<PostList posts={this.state.posts}/>
+				</div>
+			}
+			{this.props.renderMap === true
+				&&
+				<div>
+				<MapRender posts={this.state.posts}/>
+				</div>
+			}
 			</React.Fragment>
 			)
 	}

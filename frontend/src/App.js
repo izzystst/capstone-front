@@ -11,7 +11,11 @@ export default class App extends Component {
       loggedIn: false,
       loggedInUserEmail: "",
       loggedInUserId: 0,
-      renderMap:false
+      renderMap:false,
+      renderNewPost: false,
+      renderUsersPosts: false,
+      renderAllPosts: false
+
     }
   }
 
@@ -61,7 +65,9 @@ export default class App extends Component {
         this.setState({
           loggedIn: true,
           loggedInUserEmail: loginJson.data.email,
-          loggedInUserId: loginJson.data.id
+          loggedInUserId: loginJson.data.id,
+          renderNewPost: true,
+
         })      
       }
 
@@ -89,9 +95,39 @@ export default class App extends Component {
   }
   ShowMap=()=>{
     this.setState({
-      renderMap: true
+      renderMap:true,
+      renderNewPost: false,
+      renderUsersPosts: false,
+      renderAllPosts: false
+
     })
   }
+  newPost=()=>{
+    this.setState({
+      renderMap:false,
+      renderNewPost: true,
+      renderUsersPosts: false,
+      renderAllPosts: false
+    })
+  }
+  UsersPost=()=>{
+    this.setState({
+      renderMap:false,
+      renderNewPost: false,
+      renderUsersPosts: true,
+      renderAllPosts: false
+    })
+  }
+  allPosts=()=>{
+    this.setState({
+      renderMap:false,
+      renderNewPost: false,
+      renderUsersPosts: false,
+      renderAllPosts: true      
+    })
+  }
+
+
   render() {
   return (
     <div className="App">
@@ -102,9 +138,17 @@ export default class App extends Component {
       <Header 
         email={this.state.loggedInUserEmail}
         ShowMap={this.ShowMap}
+        newPost={this.newPost}
+        UsersPost={this.UsersPost}
+        allPosts={this.allPosts}
       />
       <PostContainer 
-        loggedInUserId={this.state.loggedInUserId}/>
+        loggedInUserId={this.state.loggedInUserId}
+        renderMap={this.state.renderMap}
+        renderNewPost={this.state.renderNewPost}
+        renderUsersPosts={this.state.renderUsersPosts}
+        renderAllPosts={this.state.renderAllPosts}
+        />
       </React.Fragment>
       :
     <LoginRegistrationForm
