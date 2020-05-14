@@ -5,12 +5,14 @@ import PostList from "../PostList"
 import MapRender from "../MapRender"
 import UsersPosts from "../UsersPosts"
 import CommonWordsList from "../CommonWordsList"
+import UserAdmin from "../UserAdmin"
 export default class PostContainer extends Component {
 	constructor(props){
 		super(props)
 		this.state={
 			posts:[],
 			currentUsersPosts:[],
+			postedToday: null
 			// commonWords: []
 		}
 	}
@@ -18,6 +20,7 @@ export default class PostContainer extends Component {
 
 	  async componentDidMount() {
 			await this.getPosts()
+			await this.postToday()
 			// this.getUsersPosts(1)
 	}
 
@@ -89,6 +92,24 @@ export default class PostContainer extends Component {
 	// 		console.log(err)
 	// 	}
 	// }
+	postToday = async () =>{
+		const url = process.env.REACT_APP_API_URL + "/api/v1/posts/today"
+		const todayResponse = await fetch(url, {
+			credentials: "include"
+		})
+		const todayJson = await todayResponse.json()
+		console.log("this is today json")
+		console.log(todayJson)	
+		if(todayJson.data === false){
+			this.setState({
+				postedToday: false
+			})
+		}else{
+			this.setState({
+				postedToday: true
+			})			
+		}	
+	}
 	// getUsersPosts = async (id)=>{
 	// 	try{
 	// 		const url = process.env.REACT_APP_API_URL + "/api/v1/posts/users/" + id + "/" 
@@ -110,7 +131,7 @@ export default class PostContainer extends Component {
 			{this.props.renderNewPost === true
 				&&
 				<div>
-				<NewPostForm createPost={this.createPost} />
+				<NewPostForm createPost={this.createPost} postedToday={this.state.postedToday}/>
 				</div>
 			}
 			{this.props.renderUsersPosts === true
@@ -138,6 +159,12 @@ export default class PostContainer extends Component {
 				<CommonWordsList commonWords={this.props.commonWords} commonPosts={this.props.commonPosts}/>
 				</div>
 
+			}
+			{this.props.renderUser === true
+				&&
+				<div>
+	
+				</div>
 			}
 			</React.Fragment>
 			)

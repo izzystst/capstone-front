@@ -15,7 +15,8 @@ export default class App extends Component {
       renderNewPost: false,
       renderUsersPosts: false,
       renderAllPosts: false,
-      renderCommonWords: false
+      renderCommonWords: false,
+      renderUser: false
 
     }
   }
@@ -102,7 +103,8 @@ export default class App extends Component {
       renderNewPost: false,
       renderUsersPosts: false,
       renderAllPosts: false,
-      renderCommonWords: false
+      renderCommonWords: false,
+      renderUser: false
 
 
     })
@@ -114,7 +116,8 @@ export default class App extends Component {
       renderNewPost: true,
       renderUsersPosts: false,
       renderAllPosts: false,
-      renderCommonWords: false
+      renderCommonWords: false,
+      renderUser: false
 
     })
   }
@@ -124,7 +127,8 @@ export default class App extends Component {
       renderNewPost: false,
       renderUsersPosts: true,
       renderAllPosts: false,
-      renderCommonWords: false
+      renderCommonWords: false,
+      renderUser: false
 
     })
   }
@@ -134,11 +138,22 @@ export default class App extends Component {
       renderNewPost: false,
       renderUsersPosts: false,
       renderAllPosts: true,
-      renderCommonWords: false
+      renderCommonWords: false,
+      renderUser: false
 
     })
   }
+  userInfo=()=>{
+    this.setState({
+      renderMap:false,
+      renderNewPost: false,
+      renderUsersPosts: false,
+      renderAllPosts: false,
+      renderCommonWords: false,
+      renderUser: true
 
+    })    
+  }
 
   getCommonWords= async () =>{
     try{
@@ -181,6 +196,7 @@ export default class App extends Component {
         UsersPost={this.UsersPost}
         allPosts={this.allPosts}
         logout={this.logout}
+        userInfo={this.userInfo}
         getCommonWords={this.getCommonWords}
       />
       <PostContainer 
@@ -190,6 +206,7 @@ export default class App extends Component {
         renderUsersPosts={this.state.renderUsersPosts}
         renderAllPosts={this.state.renderAllPosts}
         renderCommonWords={this.state.renderCommonWords}
+        renderUser={this.state.renderUser}
         commonWords = {this.state.commonWords}
         commonPosts= {this.state.commonPosts}
         />

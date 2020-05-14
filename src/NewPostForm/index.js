@@ -78,6 +78,15 @@ export default class NewPostForm extends Component {
 		return(
 			<Segment>
 			<h4>Today's Post</h4>
+			{this.props.postedToday === true
+			&&
+			<div>
+			you already posted today!
+			</div>
+			}{
+				this.props.postedToday === false
+				&&
+			
 			<Form onSubmit={this.handleSubmit}>
 				<Form.Input
 					type="textarea"
@@ -97,6 +106,7 @@ export default class NewPostForm extends Component {
 
 			<Button type="Submit">Post</Button>
 			</Form>
+		}
 			</Segment>
 			)
 	}
