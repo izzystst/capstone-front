@@ -25,6 +25,8 @@ export default class PostContainer extends Component {
 	}
 
 	createPost = async (postToAdd)=>{
+		this.postToday()
+
 		console.log("this is the post you are trying to add", postToAdd)
 		try{
 			const url = process.env.REACT_APP_API_URL + "/api/v1/posts/"
@@ -40,10 +42,14 @@ export default class PostContainer extends Component {
 			console.log("this is the create post json")
 			console.log(createPostJson)
 			if(createPostResponse.status === 201){
+				const posts = this.state.postJson
+				posts.push(createPostJson)
 				this.setState({
-				posts: [...this.state.posts, createPostJson.data]
+				posts: posts
 				})
 			}
+			this.getPosts()
+			this.postToday()
 		}catch(err){
 			console.log(err)
 		}
@@ -163,7 +169,7 @@ export default class PostContainer extends Component {
 			{this.props.renderUser === true
 				&&
 				<div>
-	
+				<UserAdmin loggedInUserId={this.props.loggedInUserId} />
 				</div>
 			}
 			</React.Fragment>
