@@ -13,7 +13,7 @@ export default function Header(props) {
     <span className='fake-link' onClick={props.newPost}> Add Today </span>
     <span className='fake-link' onClick={props.UsersPost}> Your Past </span>
     <span className='fake-link' onClick={props.allPosts}> Everyone's Past</span>
-    <span className='fake-link' onClick={props.commonWords}> Commonality </span>
+    <span className='fake-link' onClick={props.getCommonWords}> Commonality </span>
 
 	<p>Logged in as {props.email}.&nbsp;
         <span className="fake-link" onClick={props.logout}>(Log out)</span>

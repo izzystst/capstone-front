@@ -10,7 +10,8 @@ export default class PostContainer extends Component {
 		super(props)
 		this.state={
 			posts:[],
-			currentUsersPosts:[]
+			currentUsersPosts:[],
+			// commonWords: []
 		}
 	}
 
@@ -68,7 +69,26 @@ export default class PostContainer extends Component {
 			console.log(err)
 		}
 
-	}
+	}	
+	// getCommonWords= async () =>{
+	// 	try{
+	// 		const url = process.env.REACT_APP_API_URL + "/api/v1/posts/common"
+	// 		console.log(url)
+	// 		const commonResponse = await fetch(url, {
+	// 			credentials: "include"
+	// 		})
+	// 		const commonJson = await commonResponse.json()
+	// 		console.log("this is the common json")
+	// 		console.log(commonJson.data)
+	// 		console.log(commonJson.data.posts_with_common_words)
+	// 		this.setState({
+	// 			commonWords: commonJson.data
+	// 		})
+
+	// 	}catch(err){
+	// 		console.log(err)
+	// 	}
+	// }
 	// getUsersPosts = async (id)=>{
 	// 	try{
 	// 		const url = process.env.REACT_APP_API_URL + "/api/v1/posts/users/" + id + "/" 
@@ -115,7 +135,7 @@ export default class PostContainer extends Component {
 			{this.props.renderCommonWords === true
 				&&
 				<div>
-				<CommonWordsList />
+				<CommonWordsList commonWords={this.props.commonWords} commonPosts={this.props.commonPosts}/>
 				</div>
 
 			}

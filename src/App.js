@@ -94,6 +94,7 @@ export default class App extends Component {
       console.log(err)
     }
   }
+  
   ShowMap=()=>{
     console.log("show map is being called")
     this.setState({
@@ -137,17 +138,34 @@ export default class App extends Component {
 
     })
   }
-  commonWords=()=>{
-    this.setState({
-      renderMap:false,
-      renderNewPost: false,
-      renderUsersPosts: false,
-      renderAllPosts: false,
-      renderCommonWords: true
-    })
 
+
+  getCommonWords= async () =>{
+    try{
+      const url = process.env.REACT_APP_API_URL + "/api/v1/posts/common"
+      console.log(url)
+      const commonResponse = await fetch(url, {
+        credentials: "include"
+      })
+      const commonJson = await commonResponse.json()
+      console.log("this is the common json")
+      console.log(commonJson.data)
+      // console.log(commonJson.data.posts_with_common_words)
+      this.setState({
+        commonPosts: commonJson.data.posts,
+        commonWords: commonJson.data.words,
+        renderMap:false,
+        renderNewPost: false,
+        renderUsersPosts: false,
+        renderAllPosts: false,
+        renderCommonWords: true
+
+      })
+
+    }catch(err){
+      console.log(err)
+    }
   }
-
 
   render() {
   return (
@@ -163,7 +181,7 @@ export default class App extends Component {
         UsersPost={this.UsersPost}
         allPosts={this.allPosts}
         logout={this.logout}
-        commonWords={this.commonWords}
+        getCommonWords={this.getCommonWords}
       />
       <PostContainer 
         loggedInUserId={this.state.loggedInUserId}
@@ -172,7 +190,8 @@ export default class App extends Component {
         renderUsersPosts={this.state.renderUsersPosts}
         renderAllPosts={this.state.renderAllPosts}
         renderCommonWords={this.state.renderCommonWords}
-
+        commonWords = {this.state.commonWords}
+        commonPosts= {this.state.commonPosts}
         />
       </React.Fragment>
       :

@@ -1,4 +1,5 @@
 import React from 'react'
+const moment = require('moment');
 
 export default function UsersPostList(props) {
 	// console.log("props in post list")
@@ -7,11 +8,11 @@ export default function UsersPostList(props) {
 	// console.log(today)
 	// const TodayDate = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear()
 	// console.log(TodayDate)
-	const posts = props.posts.map(post=>{
+	const posts = props.posts.reverse().map(post=>{
 		return(
 			<div key={post.id}>
 		
-			<h2>{post.date}</h2>
+			<h2>{moment(post.date).calendar()}</h2>
 			<p>{post.text}</p>
 			</div>
 			)
