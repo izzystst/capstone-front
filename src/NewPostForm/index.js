@@ -9,14 +9,15 @@ export default class NewPostForm extends Component {
 			text: "",
 			Latitude:"",
 			Longitude:"",
-			image:""
+			image:"",
+			value:""
 		}
 	}
 	componentDidMount(){
 		this.geoFindMe()
 	}
 	handleChange = (event) =>{
-
+		console.log(event.target.length)
 		this.setState({
 			text: event.target.value
 		})
@@ -74,14 +75,16 @@ export default class NewPostForm extends Component {
 			image:""
 		})
 	}
+
 	render(){
 		return(
 			<Segment>
+			<h3>{this.props.flashMessage}</h3>
 			<h4>Today's Post</h4>
 			{this.props.postedToday === true
 			&&
 			<div>
-			you already posted today!
+			you've already posted today!
 			</div>
 			}{
 				this.props.postedToday === false
@@ -89,6 +92,7 @@ export default class NewPostForm extends Component {
 			
 			<Form onSubmit={this.handleSubmit}>
 				<Form.Input
+					id="textarea"
 					type="textarea"
 					name="text"
 					value={this.state.text}
@@ -99,6 +103,8 @@ export default class NewPostForm extends Component {
 					// height="200p"
 					required
 				/>
+				<p>Characters Left:{this.state.text.length}/200</p>
+
 				 <Form.Input 
 				 	type="file" 
 				 	name="image"

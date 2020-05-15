@@ -27,3 +27,31 @@ code {
   color: blue;
   text-decoration: underline;
 }
+.header{
+  text-align: center;
+  align-items: stretch;
+
+}
+.auth {
+  text-align: right;
+  font-size: xx-small;
+}
+h2 {
+  font-size: smaller;
+}
+
+.posts {
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.date {
+
+}
+
+li {
+  list-style-type: none;
+}
+.word {
+  text-decoration: underline;
+}

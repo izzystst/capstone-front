@@ -137,7 +137,7 @@ export default class PostContainer extends Component {
 			{this.props.renderNewPost === true
 				&&
 				<div>
-				<NewPostForm createPost={this.createPost} postedToday={this.state.postedToday}/>
+				<NewPostForm flashMessage={this.props.flashMessage} createPost={this.createPost} postedToday={this.state.postedToday}/>
 				</div>
 			}
 			{this.props.renderUsersPosts === true
@@ -169,7 +169,7 @@ export default class PostContainer extends Component {
 			{this.props.renderUser === true
 				&&
 				<div>
-				<UserAdmin loggedInUserId={this.props.loggedInUserId} />
+				<UserAdmin handler={this.props.handler} loggedInUserId={this.props.loggedInUserId} loggedIn={this.props.loggedIn}/>
 				</div>
 			}
 			</React.Fragment>

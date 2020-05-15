@@ -19,8 +19,28 @@ export default class App extends Component {
       renderUser: false
 
     }
-  }
+    this.handler = this.handler.bind(this) 
+   }
+   handler() {
+    if(this.state.loggedIn === true){
+      this.setState({
 
+        loggedIn: false,
+        loggedInUserEmail: "",
+        loggedInUserId: 0,
+        renderMap: false,
+        renderNewPost: false,
+        renderUsersPosts: false,
+        renderAllPosts: false,
+        renderCommonWords: false,
+        renderUser: false
+      })
+    }else{
+      this.setState({
+        loggedIn:true
+      })
+    }
+  }
   register = async (registerInfo) =>{
     console.log("register is being called with the following info", registerInfo)
     const url = process.env.REACT_APP_API_URL + "/api/v1/users/register"
@@ -42,7 +62,10 @@ export default class App extends Component {
         this.setState({
           loggedIn: true,
           loggedInUserEmail: registerJson.data.email,
-          loggedInUserId: registerJson.data.id
+          loggedInUserId: registerJson.data.id,
+          message: registerJson.message,
+          renderNewPost: true,
+
         })
       }
     }catch(err){
@@ -74,6 +97,7 @@ export default class App extends Component {
       }
 
     }catch(err){
+
       console.log(err)
     }
   }
@@ -88,7 +112,13 @@ export default class App extends Component {
         this.setState({
           loggedIn: false,
           loggedInUserId:"",
-          loggedInUserEmail:""
+          loggedInUserEmail:"",
+          renderMap:false,
+          renderNewPost: false,
+          renderUsersPosts: false,
+          renderAllPosts: false,
+          renderCommonWords: false,
+          renderUser: false
         })
       }
     }catch(err){
@@ -181,6 +211,34 @@ export default class App extends Component {
       console.log(err)
     }
   }
+  //   deleteAccount = async (idOfUserToDelete) =>{
+  //   const url = process.env.REACT_APP_API_URL + "/api/v1/users/" + idOfUserToDelete
+  //   console.log(url)
+  //   try{
+  //     const deleteUserResponse = await fetch(url, {
+  //       credentials: 'include', 
+  //       method: 'DELETE'
+  //     })
+  //     const deleteUserResponseJson = await deleteUserResponse.json()
+  //     this.setState({      
+  //     loggedIn: false,
+  //     loggedInUserEmail: "",
+  //     loggedInUserId: 0,
+  //     renderMap: false,
+  //     renderNewPost: false,
+  //     renderUsersPosts: false,
+  //     renderAllPosts: false,
+  //     renderCommonWords: false,
+  //     renderUser: false
+  //   })
+
+  //   }catch(err){
+  //     console.log(err)
+  //   }
+
+
+
+  // }
 
   render() {
   return (
@@ -200,6 +258,7 @@ export default class App extends Component {
         getCommonWords={this.getCommonWords}
       />
       <PostContainer 
+        loggedIn={this.state.loggedIn}
         loggedInUserId={this.state.loggedInUserId}
         renderMap={this.state.renderMap}
         renderNewPost={this.state.renderNewPost}
@@ -209,6 +268,9 @@ export default class App extends Component {
         renderUser={this.state.renderUser}
         commonWords = {this.state.commonWords}
         commonPosts= {this.state.commonPosts}
+        handler={this.handler}
+        flashMessage={this.state.message}
+        // deleteAccount = {this.deleteAccount}
         />
       </React.Fragment>
       :

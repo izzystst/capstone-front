@@ -20,7 +20,7 @@ export default function CommonWordsList(props){
 		console.log(props.commonPosts[index])
 		return(
 		<div key={index}>
-		<p>	{commonWord}</p>
+		<p className="word">	{commonWord}</p>
 		<li>{commonPosts}</li>
 		</div>
 

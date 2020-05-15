@@ -10,10 +10,10 @@ export default function UsersPostList(props) {
 	// console.log(TodayDate)
 	const posts = props.posts.reverse().map(post=>{
 		return(
-			<div key={post.id}>
+			<div className="posts" key={post.id}>
 		
-			<h2>{moment(post.date).calendar()}</h2>
 			<p>{post.text}</p>
+			<h2 className="date">{moment(post.date).calendar()}</h2>
 			</div>
 			)
 	})
