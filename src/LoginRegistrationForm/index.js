@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Label } from 'semantic-ui-react'
+import FlashMassage from 'react-flash-message';
+
 import "../index.css"
 
 export default class LoginRegisterForm extends Component {
@@ -8,6 +10,7 @@ export default class LoginRegisterForm extends Component {
 		super()
 
 		this.state= {
+
 			email: "",
 			password: "",
 			username: "",
@@ -45,16 +48,25 @@ export default class LoginRegisterForm extends Component {
 			action: "Login"			
 		})
 	}
+	// flashMessage={this.props.flashMessage}
 	render(){
 		return(
 			<React.Fragment>
+			<div>
+			<FlashMassage duration={5000} persistOnHover={true}>
+  			<p>{this.props.flashMessage}</p>
+			</FlashMassage>
+			</div>
+			<h1>73k</h1>
 			<h2>{this.state.action} Form </h2>
 				<Form onSubmit={this.handleSubmit}>
 					{
 						this.state.action === "Register"
 						&&
 						<React.Fragment>
-							<Label>Username:</Label>
+							<div>
+							<Label id="form-label">Username:</Label>
+							</div>
 							<Form.Input
 								type="text"
 								name="username"
@@ -62,7 +74,7 @@ export default class LoginRegisterForm extends Component {
 								value={this.state.username}
 								onChange={this.handleChange}
 							/>
-							<Label>Zipcode:</Label>
+							<Label id="form-label">Zipcode:</Label>
 							<Form.Input
 								type="text"
 								name="zipcode"
@@ -70,7 +82,7 @@ export default class LoginRegisterForm extends Component {
 								value={this.state.zipcode}
 								onChange={this.handleChange}
 							/>
-							<Label>Date of Birth:</Label>
+							<Label id="form-label">Date of Birth:</Label>
 							<Form.Input
 								type="date"
 								name="DOB"
@@ -80,7 +92,8 @@ export default class LoginRegisterForm extends Component {
 							/>
 						</React.Fragment>
 					}
-					<Label>Email:</Label>
+					<Label id="form-label">Email:</Label>
+				
 					<Form.Input
 						type="email"
 						name="email"
@@ -88,7 +101,7 @@ export default class LoginRegisterForm extends Component {
 						value={this.state.email}
 						onChange={this.handleChange}
 					/>
-					<Label>Password</Label>
+					<Label id="form-label">Password</Label>
 					<Form.Input
 						type="password"
 						name="password"
@@ -97,7 +110,7 @@ export default class LoginRegisterForm extends Component {
 						onChange={this.handleChange}
 					/>	
 
-					<Button type='Submit'>{this.state.action === 'Login'? "Log In" : "Sign Up"}</Button>
+					<Button id="button" type='Submit'>{this.state.action === 'Login'? "Log In" : "Sign Up"}</Button>
 					</Form>
 					{
 						this.state.action === 'Login'

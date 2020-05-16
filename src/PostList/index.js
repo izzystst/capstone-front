@@ -19,6 +19,7 @@ export default function PostList(props) {
 	})
 	return(
 		<div>
+		<h1>Everyones Days</h1>
 		{posts}
 		</div>
 		)

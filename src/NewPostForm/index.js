@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import { Form, Button, Label, Segment } from 'semantic-ui-react'
+import { Form, Label, Segment } from 'semantic-ui-react'
+import FlashMassage from 'react-flash-message';
+import Button from '@material-ui/core/Button';
+import blueGrey from '@material-ui/core/colors/blueGrey';
+
 
 export default class NewPostForm extends Component {
 
@@ -10,18 +14,47 @@ export default class NewPostForm extends Component {
 			Latitude:"",
 			Longitude:"",
 			image:"",
-			value:""
+			maxSring:""
 		}
 	}
 	componentDidMount(){
 		this.geoFindMe()
 	}
 	handleChange = (event) =>{
-		console.log(event.target.length)
+
+		console.log("handleChange")
+		const wordCount = (str) =>{
+			const numWords = str.split(" ").length
+			this.setState({
+				numWords: numWords
+			})
+		}
 		this.setState({
 			text: event.target.value
 		})
+		if(this.state.numWords === 11){
+			console.log("it is over 10 words npow")
+			const max = event.target.value.length.toString()
+			console.log(max)
+			this.setState({
+				maxString: max
+		})
+		}else{
+		this.setState({
+				maxString: "10000"
+		})
 	}
+
+	
+		wordCount(this.state.text)
+	// 	if(numWords === 200){
+	// 		const max = this.state.text.length
+	// 		const maxSring = max.toString()
+	// 		this.setState({
+	// 			maxChar: maxSring
+	// 		})	
+	// }
+}
 	geoFindMe= async ()=> {
 
 		console.log("calling geo find me")
@@ -75,23 +108,40 @@ export default class NewPostForm extends Component {
 			image:""
 		})
 	}
-
+// 	Message = () => (
+// 	<React.Component>
+//  	 <FlashMessage duration={5000}>
+//    	 <strong>{this.props.flashMessage}</strong>
+//   		</FlashMessage>
+//  	 </React.Component>
+// )
 	render(){
 		return(
-			<Segment>
-			<h3>{this.props.flashMessage}</h3>
-			<h4>Today's Post</h4>
+			<Segment id="today">
+			<div className="today">
+			<div>
+			<FlashMassage duration={5000} persistOnHover={true}>
+  			<p>{this.props.flashMessage}</p>
+			</FlashMassage>
+			</div>
+			</div>
 			{this.props.postedToday === true
 			&&
-			<div>
+			<div className="today">
 			you've already posted today!
+
 			</div>
+
 			}{
 				this.props.postedToday === false
 				&&
-			
+			<div id="today">
+			<h4>Today's Post</h4>
+
 			<Form onSubmit={this.handleSubmit}>
 				<Form.Input
+				 // id="standard-basic" label="How was your day:"
+
 					id="textarea"
 					type="textarea"
 					name="text"
@@ -99,19 +149,23 @@ export default class NewPostForm extends Component {
 					placeholder="How was today?"
 					onChange={this.handleChange}
 					// max length is in characrtors (look into avergaes)
-					maxLength="200"
+				
+					maxLength= {this.state.maxString}
+
+					
 					// height="200p"
 					required
 				/>
-				<p>Characters Left:{this.state.text.length}/200</p>
+				<p>Words:{this.state.numWords}/200</p>
 
 				 <Form.Input 
 				 	type="file" 
 				 	name="image"
 				 	onChange={this.fileChange}/>
 
-			<Button type="Submit">Post</Button>
+			<Button id="button" type="submit">Post</Button>
 			</Form>
+			</div>
 		}
 			</Segment>
 			)

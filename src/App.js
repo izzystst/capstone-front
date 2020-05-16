@@ -16,7 +16,9 @@ export default class App extends Component {
       renderUsersPosts: false,
       renderAllPosts: false,
       renderCommonWords: false,
-      renderUser: false
+      renderUser: false,
+      renderSearch:false
+      
 
     }
     this.handler = this.handler.bind(this) 
@@ -33,7 +35,9 @@ export default class App extends Component {
         renderUsersPosts: false,
         renderAllPosts: false,
         renderCommonWords: false,
-        renderUser: false
+        renderUser: false,
+        renderSearch:false,
+        message: "you have deleted your account. bye!"
       })
     }else{
       this.setState({
@@ -67,8 +71,13 @@ export default class App extends Component {
           renderNewPost: true,
 
         })
+      }if(registerResponse.status === 401){
+        this.setState({
+        message: registerJson.message
+        })
       }
     }catch(err){
+      console.log(this.registerJson.message)
       console.log("error trying to register")
       console.log(err)
     }
@@ -92,6 +101,7 @@ export default class App extends Component {
           loggedInUserEmail: loginJson.data.email,
           loggedInUserId: loginJson.data.id,
           renderNewPost: true,
+          message: loginJson.message
 
         })      
       }
@@ -108,6 +118,7 @@ export default class App extends Component {
         credentials: "include"
       })
       const logoutJson = await logoutResponse.json()
+
       if(logoutResponse.status === 200){
         this.setState({
           loggedIn: false,
@@ -118,7 +129,8 @@ export default class App extends Component {
           renderUsersPosts: false,
           renderAllPosts: false,
           renderCommonWords: false,
-          renderUser: false
+          renderUser: false,
+          message: logoutJson.message
         })
       }
     }catch(err){
@@ -134,7 +146,8 @@ export default class App extends Component {
       renderUsersPosts: false,
       renderAllPosts: false,
       renderCommonWords: false,
-      renderUser: false
+      renderUser: false,
+      renderSearch:false
 
 
     })
@@ -147,7 +160,8 @@ export default class App extends Component {
       renderUsersPosts: false,
       renderAllPosts: false,
       renderCommonWords: false,
-      renderUser: false
+      renderUser: false,
+      renderSearch:false
 
     })
   }
@@ -158,7 +172,8 @@ export default class App extends Component {
       renderUsersPosts: true,
       renderAllPosts: false,
       renderCommonWords: false,
-      renderUser: false
+      renderUser: false,
+      renderSearch:false
 
     })
   }
@@ -169,7 +184,8 @@ export default class App extends Component {
       renderUsersPosts: false,
       renderAllPosts: true,
       renderCommonWords: false,
-      renderUser: false
+      renderUser: false,
+      renderSearch:false
 
     })
   }
@@ -180,7 +196,8 @@ export default class App extends Component {
       renderUsersPosts: false,
       renderAllPosts: false,
       renderCommonWords: false,
-      renderUser: true
+      renderUser: true,
+      renderSearch:false
 
     })    
   }
@@ -203,13 +220,26 @@ export default class App extends Component {
         renderNewPost: false,
         renderUsersPosts: false,
         renderAllPosts: false,
-        renderCommonWords: true
+        renderCommonWords: true,
+        renderSearch:false
 
       })
 
     }catch(err){
       console.log(err)
     }
+  }
+  search=()=>{
+      this.setState({
+      renderMap:false,
+      renderNewPost: false,
+      renderUsersPosts: false,
+      renderAllPosts: false,
+      renderCommonWords: false,
+      renderUser: false,
+      renderSearch:true
+
+    })  
   }
   //   deleteAccount = async (idOfUserToDelete) =>{
   //   const url = process.env.REACT_APP_API_URL + "/api/v1/users/" + idOfUserToDelete
@@ -256,6 +286,7 @@ export default class App extends Component {
         logout={this.logout}
         userInfo={this.userInfo}
         getCommonWords={this.getCommonWords}
+        search={this.search}
       />
       <PostContainer 
         loggedIn={this.state.loggedIn}
@@ -277,6 +308,7 @@ export default class App extends Component {
     <LoginRegistrationForm
       register={this.register}
       login={this.login}
+      flashMessage={this.state.message}
        />
     }
       

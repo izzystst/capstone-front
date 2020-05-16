@@ -3,7 +3,7 @@ const moment = require('moment');
 
 export default function UsersPostList(props) {
 	// console.log("props in post list")
-	// console.log(props)
+	console.log(props)
 	// const today = new Date()
 	// console.log(today)
 	// const TodayDate = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear()
@@ -12,14 +12,14 @@ export default function UsersPostList(props) {
 		return(
 			<div className="posts" key={post.id}>
 		
-			<p>{post.text}</p>
-			<h2 className="date">{moment(post.date).calendar()}</h2>
+			<p className="text">{post.text}</p>
+			<h2 className="date">{moment(post.date).format("dddd MMM Do YYYY")}</h2>
 			</div>
 			)
 	})
 	return(
 		<div>
-		User's Posts
+		<h1>Your Days</h1>
 		{posts}
 		</div>
 		)
