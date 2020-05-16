@@ -241,34 +241,9 @@ export default class App extends Component {
 
     })  
   }
-  //   deleteAccount = async (idOfUserToDelete) =>{
-  //   const url = process.env.REACT_APP_API_URL + "/api/v1/users/" + idOfUserToDelete
-  //   console.log(url)
-  //   try{
-  //     const deleteUserResponse = await fetch(url, {
-  //       credentials: 'include', 
-  //       method: 'DELETE'
-  //     })
-  //     const deleteUserResponseJson = await deleteUserResponse.json()
-  //     this.setState({      
-  //     loggedIn: false,
-  //     loggedInUserEmail: "",
-  //     loggedInUserId: 0,
-  //     renderMap: false,
-  //     renderNewPost: false,
-  //     renderUsersPosts: false,
-  //     renderAllPosts: false,
-  //     renderCommonWords: false,
-  //     renderUser: false
-  //   })
-
-  //   }catch(err){
-  //     console.log(err)
-  //   }
 
 
 
-  // }
 
   render() {
   return (

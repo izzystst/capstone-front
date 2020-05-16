@@ -11,6 +11,14 @@ export default class SearchPosts extends Component {
 
 		}
 	}
+	handleChange=(event)=>{
+		console.log("this is the event")
+		console.log(event.target.value)
+		this.setState({
+			query: event.target.value
+		})
+
+	}
 	// componentDidMount=()=>{
 	// 	console.log("hello")
 	// }
@@ -19,7 +27,7 @@ export default class SearchPosts extends Component {
 		console.log("is this working?!?!??!!?")
 	return(
 		<React.Fragment>
-	  	<Input loading icon='user' iconPosition='left' placeholder='Search...' />
+	  	<Input onChange={this.handleChange} placeholder='Search...' />
 
 		<p>SEARCH HERE</p>
 		</React.Fragment>
