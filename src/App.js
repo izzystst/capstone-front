@@ -300,6 +300,7 @@ export default class App extends Component {
         commonWords = {this.state.commonWords}
         commonPosts= {this.state.commonPosts}
         handler={this.handler}
+        renderSearch={this.state.renderSearch}
         flashMessage={this.state.message}
         // deleteAccount = {this.deleteAccount}
         />

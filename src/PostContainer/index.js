@@ -6,7 +6,7 @@ import MapRender from "../MapRender"
 import UsersPosts from "../UsersPosts"
 import CommonWordsList from "../CommonWordsList"
 import UserAdmin from "../UserAdmin"
-import Search from "../Search"
+import SearchPosts from "../Search"
 
 export default class PostContainer extends Component {
 	constructor(props){
@@ -177,7 +177,7 @@ export default class PostContainer extends Component {
 			{this.props.renderSearch === true
 				&&
 				<div>
-				<Search />
+				<SearchPosts posts={this.state.posts} loggedIn={this.props.loggedIn}/>
 				</div>
 			}
 			</React.Fragment>
