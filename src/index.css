@@ -68,7 +68,7 @@ h2 {
 
 }
 .text{
-  
+
 }
 li {
   list-style-type: none;
@@ -83,4 +83,13 @@ li {
 }
 #button{
   background: #90c2d2;
+}
+.sentence{
+      margin-left: 200px;
+      margin-right: 200px;
+}
+  
+.commonPosts{
+    margin-left: 200px;
+      margin-right: 200px;
 }

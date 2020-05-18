@@ -11,9 +11,8 @@ export default function PostList(props) {
 		return(
 			<div className="posts" key={post.id}>
 
-			<h2>{moment(post.date).calendar()}</h2>
+			<h2>{moment(post.date).format("dddd MMM Do YYYY")}</h2>
 			<p>{post.text}</p>
-			<img src={post.image} />
 			</div>
 			)
 	})

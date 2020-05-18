@@ -12,23 +12,20 @@ export default function CommonWordsList(props){
 
 		}
 	}
-	// 	console.log("this is props i")
-	// 	console.log(props[i])
+
 	
 	const commonWords = props.commonWords.map((commonWord, index)=>{
 		const commonPosts = props.commonPosts[index].map((commonPost, index)=><div key={"post" + index} >{commonPost.text}</div>)
 		console.log(props.commonPosts[index])
 		return(
 		<div key={index}>
-		<p className="word">	{commonWord}</p>
-		<li>{commonPosts}</li>
+		<h1 className="word">	{commonWord}</h1>
+		<li className="commonPosts">{commonPosts}</li>
 		</div>
 
 			)
 
-	// 	return(
-	// 		{common}
-	// 		)
+
 		}
 
 	)

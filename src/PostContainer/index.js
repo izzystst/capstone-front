@@ -7,7 +7,7 @@ import UsersPosts from "../UsersPosts"
 import CommonWordsList from "../CommonWordsList"
 import UserAdmin from "../UserAdmin"
 import SearchPosts from "../Search"
-
+import ImagesOnly from "../ImagesOnly"
 export default class PostContainer extends Component {
 	constructor(props){
 		super(props)
@@ -47,7 +47,8 @@ export default class PostContainer extends Component {
 				const posts = this.state.postJson
 				posts.push(createPostJson)
 				this.setState({
-				posts: posts
+				posts: posts,
+				flashMessage: createPostJson.message
 				})
 			}
 			this.getPosts()
@@ -179,6 +180,13 @@ export default class PostContainer extends Component {
 				<div>
 				<SearchPosts posts={this.state.posts} loggedIn={this.props.loggedIn}/>
 				</div>
+			}
+			{this.props.renderImages === true
+				&&
+				<div>
+				<ImagesOnly posts={this.state.posts} />
+				</div>
+
 			}
 			</React.Fragment>
 			)

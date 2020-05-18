@@ -32,7 +32,7 @@ export default class NewPostForm extends Component {
 		this.setState({
 			text: event.target.value
 		})
-		if(this.state.numWords === 11){
+		if(this.state.numWords === 200){
 			console.log("it is over 10 words npow")
 			const max = event.target.value.length.toString()
 			console.log(max)
@@ -129,6 +129,7 @@ export default class NewPostForm extends Component {
 			&&
 			<div className="today">
 			you've already posted today!
+
 
 			</div>
 

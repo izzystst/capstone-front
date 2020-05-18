@@ -3,6 +3,7 @@ import './App.css';
 import LoginRegistrationForm from "./LoginRegistrationForm"
 import PostContainer from "./PostContainer"
 import Header from "./Header"
+import ImagesOnly from "./ImagesOnly"
 export default class App extends Component {
   constructor(){
     super()
@@ -17,7 +18,9 @@ export default class App extends Component {
       renderAllPosts: false,
       renderCommonWords: false,
       renderUser: false,
-      renderSearch:false
+      renderSearch:false,
+      renderImages:false
+
       
 
     }
@@ -37,6 +40,8 @@ export default class App extends Component {
         renderCommonWords: false,
         renderUser: false,
         renderSearch:false,
+        renderImages:false,
+
         message: "you have deleted your account. bye!"
       })
     }else{
@@ -130,7 +135,9 @@ export default class App extends Component {
           renderAllPosts: false,
           renderCommonWords: false,
           renderUser: false,
-          message: logoutJson.message
+          message: logoutJson.message,
+          renderImages:false
+
         })
       }
     }catch(err){
@@ -147,7 +154,8 @@ export default class App extends Component {
       renderAllPosts: false,
       renderCommonWords: false,
       renderUser: false,
-      renderSearch:false
+      renderSearch:false,      
+      renderImages:false
 
 
     })
@@ -161,7 +169,8 @@ export default class App extends Component {
       renderAllPosts: false,
       renderCommonWords: false,
       renderUser: false,
-      renderSearch:false
+      renderSearch:false,
+      renderImages:false
 
     })
   }
@@ -173,7 +182,8 @@ export default class App extends Component {
       renderAllPosts: false,
       renderCommonWords: false,
       renderUser: false,
-      renderSearch:false
+      renderSearch:false,
+      renderImages:false      
 
     })
   }
@@ -185,8 +195,8 @@ export default class App extends Component {
       renderAllPosts: true,
       renderCommonWords: false,
       renderUser: false,
-      renderSearch:false
-
+      renderSearch:false,
+      renderImages:false
     })
   }
   userInfo=()=>{
@@ -197,8 +207,8 @@ export default class App extends Component {
       renderAllPosts: false,
       renderCommonWords: false,
       renderUser: true,
-      renderSearch:false
-
+      renderSearch:false,
+      renderImages:false
     })    
   }
 
@@ -221,8 +231,8 @@ export default class App extends Component {
         renderUsersPosts: false,
         renderAllPosts: false,
         renderCommonWords: true,
-        renderSearch:false
-
+        renderSearch:false,
+        renderImages:false
       })
 
     }catch(err){
@@ -237,11 +247,23 @@ export default class App extends Component {
       renderAllPosts: false,
       renderCommonWords: false,
       renderUser: false,
-      renderSearch:true
-
+      renderSearch:true,
+      renderImages:false
     })  
   }
+  images=()=>{
+      this.setState({
+      renderMap:false,
+      renderNewPost: false,
+      renderUsersPosts: false,
+      renderAllPosts: false,
+      renderCommonWords: false,
+      renderUser: false,
+      renderSearch:false,
+      renderImages:true,
 
+    })     
+  }
 
 
 
@@ -262,6 +284,7 @@ export default class App extends Component {
         userInfo={this.userInfo}
         getCommonWords={this.getCommonWords}
         search={this.search}
+        images={this.images}
       />
       <PostContainer 
         loggedIn={this.state.loggedIn}
@@ -277,8 +300,10 @@ export default class App extends Component {
         handler={this.handler}
         renderSearch={this.state.renderSearch}
         flashMessage={this.state.message}
+        renderImages={this.state.renderImages}
         // deleteAccount = {this.deleteAccount}
         />
+
       </React.Fragment>
       :
     <LoginRegistrationForm

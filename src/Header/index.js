@@ -25,6 +25,7 @@ export default function Header(props) {
     <span className='fake-link' onClick={props.allPosts}> Everyone's Past</span>
     <span className='fake-link' onClick={props.getCommonWords}> Commonality </span>
     <span className='fake-link' onClick={props.search}> Search </span>
+    <span className='fake-link' onClick={props.images}> Everyones logs With Images </span>
     </div>
 
     </nav>
